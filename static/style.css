@@ -1,0 +1,152 @@
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 20px;
+}
+
+.main-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+}
+
+.song-container {
+  margin-bottom: 15px;
+}
+
+.song-card-button {
+  width: 100%;
+  background-color: #0d2636;
+  border: none;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  position: relative;
+  transition: background-color 0.18s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.song-card-button:hover,
+.song-card-button:active,
+.song-card-button:focus {
+  background-color: #1b3a53;
+  color: white;
+  outline: none;
+}
+
+.card-content-wrap {
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.collapse-content {
+  background-color: #1b3a53;
+  border-radius: 0 0 12px 12px;
+  padding: 15px;
+  color: #c0c0c0;
+  margin-top: -5px;
+  border-top: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.lyrics-content {
+  text-align: left !important;
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.snippet {
+  font-size: 0.96rem;
+  color: #b0b0b0;
+  font-weight: normal;
+  display: block;
+}
+
+.song-card-button[aria-expanded="true"] .snippet {
+  display: none;
+}
+
+.song-title-text {
+  font-size: 1.18rem;
+  font-weight: 600;
+  display: block;
+  line-height: 1.2;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.date-stamp {
+  font-size: 0.76rem;
+  color: #a0a0a0;
+  user-select: none;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: #af1111;
+  font-size: 1.2rem;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.delete-icon:hover,
+.delete-icon:focus {
+  color: #790505;
+  outline: none;
+}
+
+.edit-icon {
+  cursor: pointer;
+  color: #1d6fb8;
+  font-size: 1.2rem;
+  user-select: none;
+  transition: color 0.2s;
+  margin-right: 10px;
+}
+
+.edit-icon:hover,
+.edit-icon:focus {
+  color: #144e90;
+  outline: none;
+}
+
+.modal-content {
+  background-color: #212121;
+  color: white;
+  border-radius: 10px;
+}
+
+.modal-header {
+  border-bottom-color: #333;
+}
+
+.modal-footer {
+  border-top-color: #333;
+}
+
+.form-control-dark {
+  background-color: #333;
+  border: 1px solid #555;
+  color: white;
+}
+
+.form-control-dark::placeholder {
+  color: #aaa;
+}
+
+.btn-close-white {
+  filter: invert(1);
+}

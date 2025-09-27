@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lyric Scratchpad - Idea Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#0d2636" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('{{ url_for("static", filename="sw.js") }}');
+        });
+      }
+    </script>
+  </head>
+  <body onload="loadSongs()">
+    <div class="d-flex justify-content-start align-items-center mb-4">
+      <h1 class="main-title">Songs</h1>
+    </div>
+    <div id="song-list"></div>
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1050;">
+      <button class="btn btn-lg btn-danger rounded-circle p-3 shadow" style="background-color: #c90000; border: none; font-size: 2rem; line-height: 1;" data-bs-toggle="modal" data-bs-target="#newSongModal">+</button>
+    </div>
+
+    <!-- New Song Modal -->
+    <div class="modal fade" id="newSongModal" tabindex="-1" aria-labelledby="newSongModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newSongModalLabel" style="color: white;">Add New Song Idea</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="newSongForm">
+              <div class="mb-3">
+                <label for="songTitle" class="form-label">Song Title (Optional)</label>
+                <input type="text" class="form-control form-control-dark" id="songTitle" placeholder="e.g., Highway Tune" maxlength="50"/>
+              </div>
+              <div class="mb-3">
+                <label for="songLyrics" class="form-label">Lyrics / Notes</label>
+                <textarea class="form-control form-control-dark" id="songLyrics" rows="6" placeholder="Start writing your chorus or verse here..."></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #444; border-color: #444;">Cancel</button>
+            <button type="button" class="btn btn-primary" id="saveNewSong" style="background-color: #c90000; border-color: #c90000;">Save Idea</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteSongModal" tabindex="-1" aria-labelledby="deleteSongModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteSongModalLabel" style="color: white;">Delete Song?</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="deleteModalBody">
+            Are you sure you want to delete this song idea? This action cannot be undone.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #444; border-color: #444;">Cancel</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn" style="background-color: #c90000; border-color: #c90000;">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Song Modal -->
+    <div class="modal fade" id="editSongModal" tabindex="-1" aria-labelledby="editSongModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editSongModalLabel" style="color: white;">Edit Song</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editSongForm">
+              <div class="mb-3">
+                <label for="editSongTitle" class="form-label">Song Title</label>
+                <input type="text" class="form-control form-control-dark" id="editSongTitle" maxlength="50" />
+              </div>
+              <div class="mb-3">
+                <label for="editSongLyrics" class="form-label">Lyrics / Notes</label>
+                <textarea class="form-control form-control-dark" id="editSongLyrics" rows="6"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #444; border-color: #444;">Cancel</button>
+            <button type="button" class="btn btn-primary" id="saveEditSong" style="background-color: #1d6fb8; border-color: #1d6fb8;">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
